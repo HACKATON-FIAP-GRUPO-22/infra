@@ -1,0 +1,36 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.1.9"  
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACADEMY_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACADEMY_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_ACADEMY_SESSION_TOKEN }}
+          aws-region: ${{ secrets.AWS_ACADEMY_REGION_DEFAULT }}
+
+      - name: Terraform Init
+        working-directory: .
+        run: terraform init    
+
+      - name: Terraform Apply
+        working-directory: .
+        run: terraform apply -auto-approve

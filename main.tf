@@ -13,15 +13,23 @@ provider "aws" {
 # Cognito Module
 module "cognito" {
   source = "./cognito"
-  region       = var.regionDefault
+  region = var.regionDefault
 }
 
-module "s3" {
-  source = "./s3"
-}
+# module "s3" {
+#   source = "./s3"
+# }
 
-module "sqs" {
-  source = "./sqs"
+# module "sqs" {
+#   source = "./sqs"
+# }
+
+# module "rds" {
+#   source = "./rds"
+# }
+
+module "k8s" {
+  source = "./k8s"
 }
 
 
