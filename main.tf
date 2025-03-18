@@ -10,7 +10,6 @@ provider "aws" {
   region = var.regionDefault
 }
 
-# Cognito Module
 module "cognito" {
   source = "./cognito"
   region = var.regionDefault

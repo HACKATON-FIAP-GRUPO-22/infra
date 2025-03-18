@@ -18,6 +18,6 @@ data "aws_iam_role" "labrole" {
   name = "LabRole"
 }
 
-data "aws_iam_role" "voclabs" {
-  name = "voclabs"
-}
+# data "aws_iam_role" "voclabs" {
+#   name = "voclabs"
+# }
